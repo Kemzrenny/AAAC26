@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Africa Apostolic Congress 2026 | AAAC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #060607; color: #ffffff; margin: 0; padding: 0; }
+        .font-display { font-family: 'Oswald', sans-serif; }
+        
+        .scrim-bottom {
+            background: linear-gradient(to top, #060607 0%, rgba(6, 6, 7, 0.3) 60%, rgba(6, 6, 7, 0) 100%);
+        }
+        .scrim-top {
+            background: linear-gradient(to bottom, #060607 0%, rgba(6, 6, 7, 0.6) 50%, rgba(6, 6, 7, 0) 100%);
+        }
+        .scrim-heavy {
+            background: linear-gradient(to bottom, #060607 0%, rgba(6, 6, 7, 0.85) 25%, rgba(6, 6, 7, 0.85) 75%, #060607 100%);
+        }
+        /* Pitch-black heavy overlay designed for footer-bg.png readability */
+        .scrim-pitch-black {
+            background: linear-gradient(to bottom, #060607 0%, rgba(0, 0, 0, 0.85) 40%, rgba(0, 0, 0, 0.9) 100%);
+        }
+
+        @keyframes marquee-left {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+        .animate-marquee-left {
+            display: flex;
+            width: 200%;
+            animation: marquee-left 30s linear infinite;
+        }
+        .animate-marquee-right {
+            display: flex;
+            width: 200%;
+            animation: marquee-right 30s linear infinite;
+        }
+        .animate-marquee-left:hover, .animate-marquee-right:hover {
+            animation-play-state: paused;
+        }
+        
+        .theme-glow {
+            text-shadow: 0 0 50px rgba(229, 169, 60, 0.6);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        grm: {
+                            gold: '#E5A93C',
+                            darkCard: '#0E0F11',
+                            borders: '#1F2024'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased overflow-x-hidden" x-data="globalState()">
+
+    <!-- ─── NAVIGATION HEADER ─── -->
+    <header class="absolute inset-x-0 top-0 w-full z-50 bg-transparent">
+        <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <a href="#" class="flex items-center shrink-0">
+                <img src="GLORY REALMS MINISTRIES LOGO.png" alt="Glory Realms Ministries Logo" class="h-8 md:h-10 w-auto object-contain drop-shadow-md">
+            </a>
+            
+            <div class="hidden lg:flex items-center space-x-12 text-xs font-semibold tracking-widest text-neutral-200">
+                <a href="#theme-deep-dive" class="hover:text-grm-gold transition-colors duration-300 drop-shadow-md">THE VISION</a>
+                <a href="#ministers" class="hover:text-grm-gold transition-colors duration-300 drop-shadow-md">MINISTERS</a>
+                <a href="#faqs" class="hover:text-grm-gold transition-colors duration-300 drop-shadow-md">FAQ</a>
+            </div>
+
+            <div class="hidden lg:block shrink-0">
+                <a href="YOUR_EXISTING_FORM_LINK" target="_blank" class="bg-white text-black font-bold text-xs uppercase tracking-widest px-6 py-3 rounded hover:bg-grm-gold transition-all duration-300 transform hover:scale-105 shadow-xl">
+                    REGISTER NOW
+                </a>
+            </div>
+
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-50 relative focus:outline-none" aria-label="Toggle Menu">
+                <span class="w-7 h-0.5 bg-white transition-all duration-300 origin-center drop-shadow-md" :class="mobileMenuOpen ? 'transform rotate-45 translate-y-2' : ''"></span>
+                <span class="w-7 h-0.5 bg-white transition-all duration-300 drop-shadow-md" :class="mobileMenuOpen ? 'opacity-0' : ''"></span>
+                <span class="w-7 h-0.5 bg-white transition-all duration-300 origin-center drop-shadow-md" :class="mobileMenuOpen ? 'transform -rotate-45 -translate-y-2' : ''"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Responsive Mobile Drawer -->
+    <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-full" x-transition:enter-end="opacity-100 translate-x-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-full" class="fixed inset-0 bg-[#060607]/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center lg:hidden" style="display: none;">
+        <div class="flex flex-col space-y-8 text-center text-xl font-display uppercase tracking-widest mb-12">
+            <a href="#theme-deep-dive" @click="mobileMenuOpen = false" class="text-gray-300 hover:text-grm-gold transition-colors">THE VISION</a>
+            <a href="#ministers" @click="mobileMenuOpen = false" class="text-gray-300 hover:text-grm-gold transition-colors">MINISTERS</a>
+            <a href="#faqs" @click="mobileMenuOpen = false" class="text-gray-300 hover:text-grm-gold transition-colors">FAQ</a>
+        </div>
+        <a href="YOUR_EXISTING_FORM_LINK" target="_blank" @click="mobileMenuOpen = false" class="bg-grm-gold text-black font-bold text-sm uppercase tracking-widest px-10 py-4 rounded shadow-lg shadow-grm-gold/20">
+            REGISTER NOW
+        </a>
+    </div>
+
+    <!-- ─── HERO SECTION ─── -->
+    <section class="relative h-screen min-h-[650px] md:min-h-[750px] w-full flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-black">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-40">
+                <source src="Camera_pans_across_environment_202606281710.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="absolute inset-0 scrim-bottom z-10"></div>
+
+        <div class="relative z-20 text-center max-w-6xl mx-auto px-6 flex flex-col items-center justify-center mt-12">
+            <img src="AAAC26 LOGO.png" alt="All Africa Apostolic Congress Logo" class="w-28 md:w-36 h-auto object-contain mb-4 animate-fade-in drop-shadow-2xl">
+            
+            <span class="text-[10px] md:text-xs uppercase tracking-[0.4em] text-neutral-300 font-bold mb-2 drop-shadow-md">ALL AFRICA APOSTOLIC CONGRESS</span>
+            
+            <h2 class="font-display uppercase text-4xl md:text-[5.5rem] font-bold tracking-tighter leading-[0.95] text-white my-1 drop-shadow-lg">
+                THE ZEAL OF <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-grm-gold to-amber-600 theme-glow">THE LORD'S HOUSE</span>
+            </h2>
+
+            <div class="mt-2 text-base md:text-xl font-display font-medium tracking-[0.3em] text-neutral-200 drop-shadow-md">
+                AUGUST 5TH – 9TH, 2026
+            </div>
+
+            <div class="mt-6">
+                <a href="YOUR_EXISTING_FORM_LINK" target="_blank" class="bg-grm-gold hover:bg-amber-500 text-black font-bold text-xs uppercase tracking-widest px-10 py-3.5 rounded transition-all duration-300 hover:scale-105 transform inline-block shadow-2xl shadow-grm-gold/30">
+                    REGISTER NOW
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── INTRO HOOK & COUNTDOWN CONTAINER ─── -->
+    <section class="relative bg-gradient-to-b from-[#060607] to-zinc-950 py-28 border-b border-white/5 overflow-hidden text-center">
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <h2 class="font-display text-4xl md:text-7xl font-bold uppercase tracking-tight text-white leading-none">
+                YOU DON'T WANT <br class="hidden md:inline">TO MISS <span class="text-transparent bg-clip-text bg-gradient-to-r from-grm-gold via-white to-amber-500">THIS CONVERGENCE.</span>
+            </h2>
+            <div class="w-24 h-[2px] bg-grm-gold mx-auto my-8"></div>
+            <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-12">
+                This is not another conference or a repeat meeting. This is a critical spiritual junction point. Heaven is activating soldiers, shifting dimensions, and altering continental assignments. 
+            </p>
+
+            <div class="grid grid-cols-4 gap-4 max-w-3xl mx-auto bg-black/40 backdrop-blur-md p-8 rounded-2xl border border-white/5 shadow-2xl mb-12">
+                <div class="text-center px-2">
+                    <span class="font-display text-4xl md:text-7xl font-bold text-grm-gold" x-text="days">00</span>
+                    <span class="block text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-500 mt-2 font-semibold">Days</span>
+                </div>
+                <div class="text-center px-2">
+                    <span class="font-display text-4xl md:text-7xl font-bold text-white" x-text="hours">00</span>
+                    <span class="block text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-500 mt-2 font-semibold">Hours</span>
+                </div>
+                <div class="text-center px-2">
+                    <span class="font-display text-4xl md:text-7xl font-bold text-white" x-text="minutes">00</span>
+                    <span class="block text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-500 mt-2 font-semibold">Minutes</span>
+                </div>
+                <div class="text-center px-2">
+                    <span class="font-display text-4xl md:text-7xl font-bold text-grm-gold animate-pulse" x-text="seconds">00</span>
+                    <span class="block text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-500 mt-2 font-semibold">Seconds</span>
+                </div>
+            </div>
+
+            <div>
+                <a href="YOUR_EXISTING_FORM_LINK" target="_blank" class="bg-white text-black hover:bg-grm-gold hover:text-black font-bold text-sm uppercase tracking-widest px-14 py-4 rounded transition-all duration-300 hover:scale-105 transform inline-block shadow-2xl">
+                    REGISTER NOW
+                </a>
+            </div>
+        </div>
+        <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
+            <span class="font-display text-[15rem] md:text-[24rem] font-bold text-white uppercase tracking-tighter opacity-5 select-none">AAAC 2026</span>
+        </div>
+    </section>
+
+    <!-- ─── THE PIVOT (ABOUT SECTION WITH GRID LAYOUT IMAGERY) ─── -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-28">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <span class="text-xs font-bold uppercase tracking-widest text-grm-gold">The Dynamic Shift</span>
+                <h2 class="font-display uppercase text-4xl md:text-5xl font-bold mt-2 tracking-tight mb-8">THE STRUCTURAL EVOLUTION</h2>
+                <div class="text-gray-400 text-lg leading-relaxed space-y-6 font-light">
+                    <p>
+                        For years, Glory Realms Ministries has built framework structures inside the classroom bounds of the School of Ministry (SOM).
+                    </p>
+                    <p>
+                        As territorial assignments accelerate across the continent, AAAC 2026 marks our official transition into a global apostolic assembly. We are moving from foundational curriculum to direct prophetic action and structural alignment.
+                    </p>
+                </div>
+                <a href="YOUR_EXISTING_FORM_LINK" target="_blank" class="mt-8 inline-flex items-center space-x-2 text-grm-gold font-bold text-xs uppercase tracking-widest hover:text-white transition-colors group">
+                    <span>Secure Your Alignment</span>
+                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+            
+            <div class="order-1 lg:order-2 relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-grm-gold/10 group">
+                <img src="Gemini_Generated_Image_94cttb94cttb94ct_2.png" alt="Apostolic Structure" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90">
+                <div class="absolute inset-0 bg-gradient-to-tr from-[#060607]/80 via-transparent to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── PROPHETIC CLARIFICATION DEEP DIVE ─── -->
+    <section id="theme-deep-dive" class="relative py-32 bg-black overflow-hidden border-y border-white/5">
+        <div class="absolute inset-0 z-0 bg-cover bg-fixed bg-center opacity-30 mix-blend-screen" style="background-image: url('Gemini_Generated_Image_94cttb94cttb94ct_2.png');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#060607] via-[#060607]/40 to-[#060607] z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#060607] via-transparent to-[#060607] z-10"></div>
+
+        <div class="relative z-20 max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-grm-gold">Prophetic Exegesis</span>
+                <h2 class="font-display uppercase text-4xl md:text-5xl font-bold tracking-tight mt-2 text-white">THE ZEAL OF THE LORD'S HOUSE</h2>
+                <div class="w-16 h-1 bg-grm-gold mx-auto my-6"></div>
+                <p class="text-lg md:text-xl text-neutral-300 font-light leading-relaxed drop-shadow-md">
+                    It is not a mere event slogan. <em class="text-white font-medium">Zeal</em> represents a Holy, absolute consumption—an inward burning fire that drives an individual to protect, align, and construct the spiritual architectures of God's house.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-[#0A0A0C]/80 backdrop-blur-md p-10 rounded-2xl border border-white/10 hover:border-grm-gold/50 transition-all duration-300 relative overflow-hidden shadow-2xl">
+                    <div class="absolute -top-6 -right-6 text-9xl text-white/5 font-display font-bold select-none pointer-events-none">01</div>
+                    <h4 class="font-display text-grm-gold font-bold uppercase text-xl md:text-2xl tracking-wide mb-4">TOTAL STRATEGIC OVERTAKE</h4>
+                    <p class="text-sm md:text-base text-neutral-400 leading-relaxed relative z-10 font-light">
+                        Moving past manual, structural note-taking into a posture where the expansion of the Kingdom is a burning personal priority. This is the divine factor initiating the pivot away from passive instructional learning models.
+                    </p>
+                </div>
+                
+                <div class="bg-[#0A0A0C]/80 backdrop-blur-md p-10 rounded-2xl border border-white/10 hover:border-grm-gold/50 transition-all duration-300 relative overflow-hidden shadow-2xl">
+                    <div class="absolute -top-6 -right-6 text-9xl text-white/5 font-display font-bold select-none pointer-events-none">02</div>
+                    <h4 class="font-display text-grm-gold font-bold uppercase text-xl md:text-2xl tracking-wide mb-4">INTER-CONTINENTAL DEPLOYMENT</h4>
+                    <p class="text-sm md:text-base text-neutral-400 leading-relaxed relative z-10 font-light">
+                        Re-ordering local ministries, marketplace platforms, and leadership units to execute assignments natively as soldiers for Christ, throwing the assembly directly into cross-border operations and real territorial impact.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── MINISTERING VOICES GRID ─── -->
+    <section id="ministers" class="max-w-6xl mx-auto px-6 py-28">
+        <div class="mb-16 text-center">
+            <span class="text-xs font-bold uppercase tracking-widest text-grm-gold">Apostolic Alignment</span>
+            <h2 class="font-display uppercase text-4xl md:text-5xl font-bold tracking-tight mt-1">MINISTERING VOICES</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-zinc-950 p-4 rounded-xl border border-white/5 group text-center">
+                <div class="w-full aspect-[4/5] bg-neutral-900 rounded-lg mb-4 overflow-hidden transition-all duration-500">
+                    <img src="pzak-img.webp" alt="Pastor Olakunle Zakariya" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105">
+                </div>
+                <h4 class="font-display uppercase text-base font-bold tracking-wide text-white">Pastor Olakunle Zakariya</h4>
+                <p class="text-[10px] text-grm-gold uppercase tracking-widest mt-1">Host & Convener</p>
+            </div>
+            <div class="bg-zinc-950 p-4 rounded-xl border border-white/5 group text-center">
+                <div class="w-full aspect-[4/5] bg-neutral-800 rounded-lg mb-4 overflow-hidden transition-all duration-500">
+                    <img src="p-desola.webp" alt="Pastor Adesola Zakariya" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105">
+                </div>
+                <h4 class="font-display uppercase text-base font-bold tracking-wide text-white">Pastor Adesola Zakariya</h4>
+                <p class="text-[10px] text-grm-gold uppercase tracking-widest mt-1">Host & Convener</p>
+            </div>
+            <div class="bg-zinc-950 p-4 rounded-xl border border-white/5 group text-center">
+                <div class="w-full aspect-[4/5] bg-neutral-900 rounded-lg mb-4 overflow-hidden transition-all duration-500">
+                    <img src="PST Zerub Betta.jpg" alt="Pastor Zerubbabel Betta Mengistu" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105">
+                </div>
+                <h4 class="font-display uppercase text-base font-bold tracking-wide text-white leading-tight">Pastor Zerubbabel<br>Betta Mengistu</h4>
+                <p class="text-[10px] text-neutral-500 uppercase tracking-widest mt-1">Guest Minister</p>
+            </div>
+            <div class="bg-zinc-950 p-4 rounded-xl border border-white/5 group text-center">
+                <div class="w-full aspect-[4/5] bg-neutral-800 rounded-lg mb-4 overflow-hidden transition-all duration-500">
+                    <img src="Apostle-Brandon.webp" alt="Apostle Brandon Bailey" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105">
+                </div>
+                <h4 class="font-display uppercase text-base font-bold tracking-wide text-white">Apostle Brandon Bailey</h4>
+                <p class="text-[10px] text-neutral-500 uppercase tracking-widest mt-1">Guest Minister</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── EXPERIENCE PORTAL ─── -->
+    <section id="experience-paths" class="relative max-w-6xl mx-auto px-6 py-32 border-t border-white/5">
+        <div class="mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-grm-gold">Access Portals</span>
+            <h2 class="font-display uppercase text-4xl md:text-5xl font-bold tracking-tight mt-1">SELECT YOUR EXPERIENCE PATHWAY</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div class="md:col-span-5 bg-zinc-950 p-8 rounded-2xl border border-white/5 hover:border-grm-gold/20 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
+                <div>
+                    <div class="flex justify-between items-center mb-8">
+                        <span class="text-xs font-bold uppercase tracking-widest bg-white/5 px-3 py-1 rounded text-white">ON-SITE DELEGATE</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-grm-gold animate-pulse"></span>
+                    </div>
+                    <h3 class="font-display text-3xl font-bold uppercase tracking-wide text-white mb-6">PHYSICAL CONVERGENCE</h3>
+                    
+                    <div class="space-y-6 text-sm">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-grm-gold font-bold">📅</span>
+                            <div>
+                                <p class="text-neutral-500 uppercase text-[10px] tracking-wider">Date Frame</p>
+                                <p class="text-neutral-200 font-medium mt-0.5">August 5th – 9th, 2026</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-grm-gold font-bold">⏰</span>
+                            <div>
+                                <p class="text-neutral-500 uppercase text-[10px] tracking-wider">Daily Runtime Intervals</p>
+                                <p class="text-neutral-200 font-medium mt-0.5">8:00 AM (Strategy) & 6:00 PM (Plenary)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-grm-gold font-bold">📍</span>
+                            <div>
+                                <p class="text-neutral-500 uppercase text-[10px] tracking-wider">Apostolic Base Venue</p>
+                                <p class="text-neutral-200 font-medium mt-0.5 leading-relaxed">Glory Centre Community Church,<br>28 Efon Alaye Street, Off Olajide, Ojodu Berger, Lagos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <a href="YOUR_EXISTING_FORM_LINK" target="_blank" class="w-full text-center bg-grm-gold text-black font-bold text-xs uppercase tracking-widest py-4 rounded hover:bg-amber-500 transition-colors block">
+                        REGISTER NOW
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:col-span-7 bg-zinc-950 p-8 rounded-2xl border border-white/5 flex flex-col justify-between min-h-[460px]">
+                <div class="w-full">
+                    <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                        <span class="text-xs font-bold uppercase tracking-widest bg-red-500/10 px-3 py-1 rounded text-red-400">VIRTUAL GLOBAL BROADCAST</span>
+                        
+                        <div class="flex bg-black p-1 rounded border border-white/5 text-[11px] font-bold tracking-wider">
+                            <button @click="streamTab = 'video'" :class="streamTab === 'video' ? 'bg-zinc-800 text-white' : 'text-neutral-400'" class="px-4 py-1.5 rounded transition-all uppercase">YouTube Live</button>
+                            <button @click="streamTab = 'audio'" :class="streamTab === 'audio' ? 'bg-zinc-800 text-white' : 'text-neutral-400'" class="px-4 py-1.5 rounded transition-all uppercase">Mixlr Feed</button>
+                        </div>
+                    </div>
+
+                    <div class="w-full aspect-video rounded-xl overflow-hidden border border-white/5 bg-black">
+                        <div x-show="streamTab === 'video'" class="w-full h-full">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/videoseries?si=15uL5JPOMUbG4bR9&amp;list=PL_zXRz4xv6K0iR-L5xo2flwN_DFLMUkDp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        
+                        <div x-show="streamTab === 'audio'" class="w-full h-full flex flex-col items-center justify-center p-6 text-center" style="display: none;">
+                            <div class="w-12 h-12 rounded-full bg-grm-gold/10 flex items-center justify-center text-grm-gold mb-3 animate-pulse">🎙️</div>
+                            <h4 class="font-display font-bold text-lg uppercase tracking-wide">Mixlr High-Fidelity Feed</h4>
+                            <p class="text-xs text-neutral-400 max-w-sm mt-1 mb-4">Stream live apostolic execution modules directly using your custom external player layout links.</p>
+                            <a href="https://mixlr.com" target="_blank" class="text-xs text-black bg-white px-4 py-2 rounded font-bold uppercase tracking-wider hover:bg-grm-gold transition-colors">Launch Audio Player</a>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-neutral-500 mt-3 italic">Tune in here dynamically to participate live or audit historical system tracks during the continuous broadcast windows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── TWO-ROW HISTORICAL MARQUEE ─── -->
+    <section class="py-24 overflow-hidden bg-black/40 border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 mb-12">
+            <span class="text-xs font-bold uppercase tracking-widest text-grm-gold">Visual Archives</span>
+            <h2 class="font-display uppercase text-4xl font-bold mt-1">PREVIOUS ENCOUNTERS IN MOTION</h2>
+        </div>
+        
+        <div class="relative w-full overflow-hidden flex flex-col space-y-4">
+            <div class="animate-marquee-left space-x-4">
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-900 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-800 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-900 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-800 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-900 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-800 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+            </div>
+            <div class="animate-marquee-right space-x-4">
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-800 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-900 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-800 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-900 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-800 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+                <div class="w-[300px] md:w-[380px] aspect-[16/10] bg-neutral-900 rounded border border-white/5 flex-shrink-0 grayscale hover:grayscale-0 transition-all"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 10 SYSTEM MATRIX FAQS ─── -->
+    <section id="faqs" class="max-w-4xl mx-auto px-6 py-24" x-data="{ active: null }">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-grm-gold">Inquiries Portfolio</span>
+            <h2 class="font-display uppercase text-4xl font-bold mt-1">FREQUENTLY ASKED QUESTIONS</h2>
+        </div>
+
+        <div class="space-y-4">
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 1 ? null : 1" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>What is the structural difference between SOM and AAAC?</span>
+                    <span class="text-lg" x-text="active === 1 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 1" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    The School of Ministry operated as a curriculum-focused, training classroom module. AAAC 2026 is a multi-track continental assembly built for rapid execution, ministerial alignment, and direct territorial deployment.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 2 ? null : 2" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>Are there registration costs for physical attendance passes?</span>
+                    <span class="text-lg" x-text="active === 2 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 2" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    No, access is free for all sessions. However, registration is strictly required to manage seat resources and clearance credentials.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 3 ? null : 3" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>Can virtual attendees watch after live sessions end?</span>
+                    <span class="text-lg" x-text="active === 3 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 3" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    Yes, all video broadcast streams are immediately cached and archived inside the embedded YouTube dashboard interface for late-night review.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 4 ? null : 4" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>Who is expected to register for the morning tracks?</span>
+                    <span class="text-lg" x-text="active === 4 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 4" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    The 8:00 AM track is designed explicitly for church planters, pastors, elders, leadership panels, and marketplace leaders.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 5 ? null : 5" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>Is accommodation support provided for international delegations?</span>
+                    <span class="text-lg" x-text="active === 5 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 5" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    Delegates coming from other countries or outside Lagos can access logistical contact lists via our main workspace coordination channels post-registration.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 6 ? null : 6" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>What should I bring to participate effectively under this theme?</span>
+                    <span class="text-lg" x-text="active === 6 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 6" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    Come with a high posture of spiritual sensitivity, study logs, and a heart completely open to cross-border deployment instructions.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 7 ? null : 7" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>Will there be breakout streams during the daytime?</span>
+                    <span class="text-lg" x-text="active === 7 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 7" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    Yes, strategic operational tracks are segmentally mapped inside the morning operational windows to handle distinct administrative layers.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 8 ? null : 8" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>Are children and youth groups permitted inside physical slots?</span>
+                    <span class="text-lg" x-text="active === 8 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 8" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    Yes, the general evening plenaries at 6:00 PM are fully accessible to all believers hungry for spiritual transformation.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 9 ? null : 9" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>How can groups or whole church councils register together?</span>
+                    <span class="text-lg" x-text="active === 9 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 9" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    Each corporate team member must file their entry pass form details individually to ensure direct allocation of system clear passes.
+                </div>
+            </div>
+            <div class="border border-grm-borders bg-grm-darkCard rounded-lg overflow-hidden">
+                <button @click="active = active === 10 ? null : 10" class="w-full px-6 py-5 text-left font-semibold flex justify-between items-center hover:text-grm-gold transition-colors">
+                    <span>How can I reach the operations team for further inquiries?</span>
+                    <span class="text-lg" x-text="active === 10 ? '−' : '+'"></span>
+                </button>
+                <div x-show="active === 10" x-collapse class="px-6 pb-5 text-sm text-gray-400">
+                    Connect directly with us via our official Instagram handle or use the communications registry attached to your final registration confirmation receipt.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── INSTAGRAM SOCIAL ECOSYSTEM ─── -->
+    <section class="border-t border-white/5 py-24 bg-gradient-to-t from-black to-zinc-950">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-grm-gold">Stay Synchronized</span>
+                <h3 class="font-display uppercase text-4xl font-bold tracking-tight mt-1 mb-4">FOLLOW THE MOMENTUM ON INSTAGRAM</h3>
+                <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">
+                    We drop strategic mini-modules, speaker announcements, logistics updates, and prophetic insights daily. Follow our timeline to remain completely synchronized.
+                </p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-2 border border-white/20 hover:border-grm-gold px-6 py-3 rounded text-xs uppercase tracking-widest font-bold transition-all">
+                    <span>@GloryRealmsMinistries</span>
+                </a>
+            </div>
+            <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div class="aspect-square bg-zinc-900 rounded-xl border border-white/5 overflow-hidden group relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 text-[10px] tracking-wider text-grm-gold uppercase">View Update</div>
+                </div>
+                <div class="aspect-square bg-zinc-800 rounded-xl border border-white/5 overflow-hidden group relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 text-[10px] tracking-wider text-grm-gold uppercase">View Update</div>
+                </div>
+                <div class="aspect-square bg-zinc-900 rounded-xl border border-white/5 overflow-hidden group relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 text-[10px] tracking-wider text-grm-gold uppercase">View Update</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── UPDATED PITCH-BLACK FOOTER (WITH RE-MAPPED FOOTER-BG.PNG BACKDROP) ─── -->
+    <section class="relative min-h-[550px] bg-black flex flex-col justify-center items-center text-center px-6 overflow-hidden border-t border-white/5">
+        <!-- Re-mapped to footer-bg.png directly layout reference -->
+        <div class="absolute inset-0 z-0 bg-cover bg-center opacity-30" style="background-image: url('footer-bg.png');"></div>
+        <!-- Embedded pitch-black layer mask overlay to meet aesthetic target bounds safely -->
+        <div class="absolute inset-0 scrim-pitch-black z-10"></div>
+        
+        <div class="relative z-20 max-w-4xl mx-auto">
+            <!-- Exact Reverted Screenshot Typography Layout -->
+            <h2 class="font-display uppercase text-4xl md:text-6xl font-bold tracking-tighter leading-none mb-6 text-white">
+                CONSUMED BY THE ZEAL<br>OF THE KINGDOM
+            </h2>
+            <p class="text-sm md:text-base text-neutral-400 tracking-wider mb-8 max-w-2xl mx-auto font-light leading-relaxed">
+                Secure your structural delegate pass now. Step past traditional classroom modules into continental manifestation.
+            </p>
+            
+            <div class="mt-4">
+                <a href="YOUR_EXISTING_FORM_LINK" target="_blank" class="bg-white text-black font-bold uppercase text-xs tracking-widest px-10 py-4 rounded hover:bg-grm-gold transition-all duration-300 hover:scale-105 transform inline-block shadow-2xl">
+                    REGISTER NOW
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── BASE RUNTIME FOOTER ─── -->
+    <footer class="bg-black py-8 border-t border-white/5 text-center text-xs text-gray-600 tracking-wider relative z-20">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>&copy; 2026 GLORY REALMS MINISTRIES. ALL RIGHTS RESERVED.</div>
+            <div class="flex space-x-6">
+                <a href="https://mixlr.com" target="_blank" class="hover:text-white transition-colors">MIXLR</a>
+                <a href="https://youtube.com" target="_blank" class="hover:text-white transition-colors">YOUTUBE</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function globalState() {
+            return {
+                mobileMenuOpen: false,
+                streamTab: 'video',
+                days: '00',
+                hours: '00',
+                minutes: '00',
+                seconds: '00',
+                endTime: new Date('August 5, 2026 08:00:00').getTime(),
+                init() {
+                    let loop = () => {
+                        let now = new Date().getTime();
+                        let distance = this.endTime - now;
+                        if (distance < 0) {
+                            clearInterval(interval);
+                            return;
+                        }
+                        this.days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                        this.hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                        this.minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                        this.seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+                    };
+                    loop();
+                    let interval = setInterval(loop, 1000);
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
